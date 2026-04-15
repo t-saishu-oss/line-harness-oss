@@ -41,11 +41,12 @@ import { images } from './routes/images.js';
 import { setup } from './routes/setup.js';
 import { autoReplies } from './routes/auto-replies.js';
 import { trafficPools } from './routes/traffic-pools.js';
+import { eligibility } from './routes/eligibility.js';
 
 export type Env = {
   Bindings: {
     DB: D1Database;
-    IMAGES: R2Bucket;
+    IMAGES?: R2Bucket;
     ASSETS: Fetcher;
     LINE_CHANNEL_SECRET: string;
     LINE_CHANNEL_ACCESS_TOKEN: string;
@@ -106,6 +107,7 @@ app.route('/', images);
 app.route('/', setup);
 app.route('/', autoReplies);
 app.route('/', trafficPools);
+app.route('/', eligibility);
 
 // Short link: /r/:ref → landing page with LINE open button
 app.get('/r/:ref', (c) => {
